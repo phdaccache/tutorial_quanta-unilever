@@ -1,9 +1,17 @@
 import streamlit as st
+from firebase_connection.firebase import connectFirebase
 
-st.write("teste")
+connectFirebase()
 
-senha = st.secrets["senha"]
+db = st.session_state['db']
+storage = st.session_state['storage']
 
-st.write(senha)
+dic = {
+    "Ellen": 3
+}
 
-# Mudança 2
+db.child("Usuarios").push(dic)
+
+storage.child("Imagem-top").put("Logo-Atalho.png")
+
+st.selectbox("Teste", ["Opa"])
